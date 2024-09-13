@@ -6,9 +6,8 @@ export function supportScriptName(code: string, id: string) {
   const str = () => s || (s = new MagicString(code))
   const { descriptor } = parse(code)
   if (!descriptor.script && descriptor.scriptSetup) {
-    const result = compileScript(descriptor, { id })
-    const name = result.attrs.name
-    const lang = result.attrs.lang
+    const name = descriptor.scriptSetup.attrs.name
+    const lang = descriptor.scriptSetup.attrs.lang
     if (name) {
       str().appendLeft(
         0,
